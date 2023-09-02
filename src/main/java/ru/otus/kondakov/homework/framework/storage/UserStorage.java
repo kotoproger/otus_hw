@@ -2,7 +2,6 @@ package ru.otus.kondakov.homework.framework.storage;
 
 import java.util.UUID;
 import org.springframework.stereotype.Service;
-import ru.otus.kondakov.homework.app.domain.Summary;
 import ru.otus.kondakov.homework.app.domain.User;
 import ru.otus.kondakov.homework.app.port.UserStorageInterface;
 
@@ -14,7 +13,7 @@ public class UserStorage implements UserStorageInterface {
     }
 
     @Override
-    public Summary getSummary(UUID id) {
+    public User getUser(UUID id) {
         return null;
     }
 }
