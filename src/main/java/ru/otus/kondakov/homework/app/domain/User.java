@@ -3,57 +3,30 @@ package ru.otus.kondakov.homework.app.domain;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.Period;
-import java.util.List;
-import java.util.UUID;
+import javax.validation.constraints.NotNull;
+import lombok.Data;
 
+@Data
 public class User {
-    private UUID id;
+    private Long id;
+    @NotNull
     private String login;
+    @NotNull
     private String password;
     private String encodedPassword;
+    @NotNull
     private String name;
+    @NotNull
     private String surname;
+    @NotNull
     private OffsetDateTime birthday;
-    private List<String> interests;
+    @NotNull
+    private String biography;
+    @NotNull
     private String city;
 
-    public UUID getId() {
-        return id;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public String getEncodedPassword() {
-        return encodedPassword;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public OffsetDateTime getBirthday() {
-        return birthday;
-    }
-
-    public List<String> getInterests() {
-        return interests;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public int getAge(){
+    public int getAge() {
         return Period.between(birthday.toLocalDate(), LocalDate.now()).getYears();
     }
 
-    public String getPassword() {
-        return password;
-    }
 }

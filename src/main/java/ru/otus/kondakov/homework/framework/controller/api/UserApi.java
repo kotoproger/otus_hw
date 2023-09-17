@@ -16,11 +16,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
 import java.util.Optional;
 import javax.validation.Valid;
-import javax.validation.constraints.*;
-import ru.otus.kondakov.homework.framework.controller.model.LoginPost500Response;
-import ru.otus.kondakov.homework.framework.controller.model.User;
-import ru.otus.kondakov.homework.framework.controller.model.UserRegisterPost200Response;
-import ru.otus.kondakov.homework.framework.controller.model.UserRegisterPostRequest;
+import javax.validation.constraints.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +27,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.NativeWebRequest;
+import ru.otus.kondakov.homework.framework.controller.model.LoginPost500Response;
+import ru.otus.kondakov.homework.framework.controller.model.UserRegisterPost200Response;
+import ru.otus.kondakov.homework.framework.controller.model.UserRegisterPostRequest;
+import ru.otus.kondakov.homework.framework.controller.model.UserSummary;
 
 @Validated
 @Tag(name = "user", description = "the user API")
@@ -56,7 +56,7 @@ public interface UserApi {
         description = "Получение анкеты пользователя",
         responses = {
             @ApiResponse(responseCode = "200", description = "Успешное получение анкеты пользователя", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))
+                @Content(mediaType = "application/json", schema = @Schema(implementation = UserSummary.class))
             }),
             @ApiResponse(responseCode = "400", description = "Невалидные данные"),
             @ApiResponse(responseCode = "404", description = "Анкета не найдена"),
@@ -71,13 +71,13 @@ public interface UserApi {
     @RequestMapping(
         method = RequestMethod.GET,
         value = "/user/get/{id}",
-        produces = { "application/json" }
+        produces = {"application/json"}
     )
-    default ResponseEntity<User> userGetIdGet(
+    default ResponseEntity<UserSummary> userGetIdGet(
         @Parameter(name = "id", description = "Идентификатор пользователя", required = true, in = ParameterIn.PATH) @PathVariable("id") String id
     ) {
         getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+            for (MediaType mediaType : MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
                     String exampleString = "{ \"birthdate\" : \"2017-02-01T00:00:00.000+00:00\", \"city\" : \"Москва\", \"second_name\" : \"Фамилия\", \"id\" : \"id\", \"biography\" : \"Хобби, интересы и т.п.\", \"first_name\" : \"Имя\", \"age\" : 18 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
@@ -155,7 +155,7 @@ public interface UserApi {
         description = "Поиск анкет",
         responses = {
             @ApiResponse(responseCode = "200", description = "Успешные поиск пользователя", content = {
-                @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = User.class)))
+                @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = UserSummary.class)))
             }),
             @ApiResponse(responseCode = "400", description = "Невалидные данные"),
             @ApiResponse(responseCode = "500", description = "Ошибка сервера", content = {
@@ -169,14 +169,14 @@ public interface UserApi {
     @RequestMapping(
         method = RequestMethod.GET,
         value = "/user/search",
-        produces = { "application/json" }
+        produces = {"application/json"}
     )
-    default ResponseEntity<List<User>> userSearchGet(
+    default ResponseEntity<List<UserSummary>> userSearchGet(
         @NotNull @Parameter(name = "first_name", description = "Условие поиска по имени", required = true, in = ParameterIn.QUERY) @Valid @RequestParam(value = "first_name", required = true) String firstName,
         @NotNull @Parameter(name = "last_name", description = "Условие поиска по фамилии", required = true, in = ParameterIn.QUERY) @Valid @RequestParam(value = "last_name", required = true) String lastName
     ) {
         getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+            for (MediaType mediaType : MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
                     String exampleString = "[ { \"birthdate\" : \"2017-02-01T00:00:00.000+00:00\", \"city\" : \"Москва\", \"second_name\" : \"Фамилия\", \"id\" : \"id\", \"biography\" : \"Хобби, интересы и т.п.\", \"first_name\" : \"Имя\", \"age\" : 18 }, { \"birthdate\" : \"2017-02-01T00:00:00.000+00:00\", \"city\" : \"Москва\", \"second_name\" : \"Фамилия\", \"id\" : \"id\", \"biography\" : \"Хобби, интересы и т.п.\", \"first_name\" : \"Имя\", \"age\" : 18 } ]";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);

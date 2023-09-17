@@ -5,14 +5,13 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.time.LocalDate;
 import java.util.Objects;
 import javax.validation.Valid;
-import javax.validation.constraints.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * User
  */
 
-public class User {
+public class UserSummary {
 
   private String id;
 
@@ -29,7 +28,7 @@ public class User {
 
   private String city;
 
-  public User id(String id) {
+  public UserSummary id(String id) {
     this.id = id;
     return this;
   }
@@ -49,7 +48,7 @@ public class User {
     this.id = id;
   }
 
-  public User firstName(String firstName) {
+  public UserSummary firstName(String firstName) {
     this.firstName = firstName;
     return this;
   }
@@ -69,7 +68,7 @@ public class User {
     this.firstName = firstName;
   }
 
-  public User secondName(String secondName) {
+  public UserSummary secondName(String secondName) {
     this.secondName = secondName;
     return this;
   }
@@ -89,7 +88,7 @@ public class User {
     this.secondName = secondName;
   }
 
-  public User age(Integer age) {
+  public UserSummary age(Integer age) {
     this.age = age;
     return this;
   }
@@ -109,7 +108,7 @@ public class User {
     this.age = age;
   }
 
-  public User birthdate(LocalDate birthdate) {
+  public UserSummary birthdate(LocalDate birthdate) {
     this.birthdate = birthdate;
     return this;
   }
@@ -129,7 +128,7 @@ public class User {
     this.birthdate = birthdate;
   }
 
-  public User biography(String biography) {
+  public UserSummary biography(String biography) {
     this.biography = biography;
     return this;
   }
@@ -149,7 +148,7 @@ public class User {
     this.biography = biography;
   }
 
-  public User city(String city) {
+  public UserSummary city(String city) {
     this.city = city;
     return this;
   }
@@ -177,7 +176,7 @@ public class User {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    User user = (User) o;
+    UserSummary user = (UserSummary) o;
     return Objects.equals(this.id, user.id) &&
         Objects.equals(this.firstName, user.firstName) &&
         Objects.equals(this.secondName, user.secondName) &&

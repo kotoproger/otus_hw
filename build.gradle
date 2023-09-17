@@ -28,10 +28,18 @@ dependencies {
 	implementation group: 'io.swagger.core.v3', name: 'swagger-annotations', version: '2.2.7'
 	implementation group: 'io.swagger.core.v3', name: 'swagger-models', version: '2.2.7'
 	implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+	runtimeOnly group: 'mysql', name: 'mysql-connector-java', version: '8.0.33'
 	annotationProcessor "org.mapstruct:mapstruct-processor:1.5.3.Final"
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.boot:spring-boot-testcontainers'
 	testImplementation 'org.testcontainers:junit-jupiter'
+
+	// lombok
+	compileOnly "org.projectlombok:lombok:1.18.24"
+	annotationProcessor "org.projectlombok:lombok:1.18.24"
+
+	testCompileOnly "org.projectlombok:lombok:1.18.24"
+	testAnnotationProcessor "org.projectlombok:lombok:1.18.24"
 }
 
 tasks.named('test') {

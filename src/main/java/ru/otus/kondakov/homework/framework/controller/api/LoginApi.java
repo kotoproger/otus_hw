@@ -13,10 +13,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.Optional;
 import javax.validation.Valid;
-import javax.validation.constraints.*;
-import ru.otus.kondakov.homework.framework.controller.model.LoginPost200Response;
-import ru.otus.kondakov.homework.framework.controller.model.LoginPost500Response;
-import ru.otus.kondakov.homework.framework.controller.model.LoginPostRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +21,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.NativeWebRequest;
+import ru.otus.kondakov.homework.framework.controller.model.LoginPost200Response;
+import ru.otus.kondakov.homework.framework.controller.model.LoginPost500Response;
+import ru.otus.kondakov.homework.framework.controller.model.LoginPostRequest;
 
 @Validated
 @Tag(name = "login", description = "the login API")
@@ -69,7 +68,7 @@ public interface LoginApi {
         consumes = { "application/json" }
     )
     default ResponseEntity<LoginPost200Response> loginPost(
-        @Parameter(name = "LoginPostRequest", description = "") @Valid @RequestBody(required = false) LoginPostRequest loginPostRequest
+        @Parameter(name = "LoginPostRequest", description = "") @Valid @RequestBody(required = false) LoginPostRequest login2PostRequest
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
