@@ -1,7 +1,6 @@
 package ru.otus.kondakov.homework.app.domain;
 
 import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.time.Period;
 import javax.validation.constraints.NotNull;
 import lombok.Getter;
@@ -19,14 +18,14 @@ public class User {
     @NotNull
     private String surname;
     @NotNull
-    private OffsetDateTime birthday;
+    private LocalDate birthday;
     @NotNull
     private String biography;
     @NotNull
     private String city;
 
     public int getAge() {
-        return Period.between(birthday.toLocalDate(), LocalDate.now()).getYears();
+        return Period.between(birthday, LocalDate.now()).getYears();
     }
 
 }

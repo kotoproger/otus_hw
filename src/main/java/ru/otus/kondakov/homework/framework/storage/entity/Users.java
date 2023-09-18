@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.time.LocalDate;
 import lombok.Data;
 
 @Entity
@@ -31,6 +32,9 @@ public class Users {
 
     @Column(name = "password_hash", nullable = false)
     private String password_hash;
+
+    @Column(name = "birth_date", nullable = false)
+    private LocalDate birthDate;
 
     public enum Sex {
         male, female
