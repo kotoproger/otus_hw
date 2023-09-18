@@ -3,10 +3,10 @@ package ru.otus.kondakov.homework.framework.controller.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Objects;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -16,31 +16,30 @@ import org.springframework.format.annotation.DateTimeFormat;
 @JsonTypeName("_user_register_post_request")
 public class UserRegisterPostRequest {
 
-  private String firstName;
+    @NotNull
+    private String firstName;
 
-  private String secondName;
+    @NotNull
+    private String secondName;
 
-  private Integer age;
-
-  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @NotNull
   private LocalDate birthdate;
 
-  private String biography;
+    @NotNull
+    private String biography;
 
-  private String city;
+    @NotNull
+    private String city;
 
-  private String password;
+    @NotNull
+    private String password;
 
   public UserRegisterPostRequest firstName(String firstName) {
     this.firstName = firstName;
     return this;
   }
 
-  /**
-   * Get firstName
-   * @return firstName
-  */
-  
   @Schema(name = "first_name", example = "Имя", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("first_name")
   public String getFirstName() {
@@ -56,11 +55,6 @@ public class UserRegisterPostRequest {
     return this;
   }
 
-  /**
-   * Get secondName
-   * @return secondName
-  */
-  
   @Schema(name = "second_name", example = "Фамилия", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("second_name")
   public String getSecondName() {
@@ -71,37 +65,13 @@ public class UserRegisterPostRequest {
     this.secondName = secondName;
   }
 
-  public UserRegisterPostRequest age(Integer age) {
-    this.age = age;
-    return this;
-  }
-
-  /**
-   * Get age
-   * @return age
-  */
-  
-  @Schema(name = "age", example = "18", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("age")
-  public Integer getAge() {
-    return age;
-  }
-
-  public void setAge(Integer age) {
-    this.age = age;
-  }
-
   public UserRegisterPostRequest birthdate(LocalDate birthdate) {
     this.birthdate = birthdate;
     return this;
   }
 
-  /**
-   * Дата рождения
-   * @return birthdate
-  */
-  @Valid 
-  @Schema(name = "birthdate", example = "Wed Feb 01 03:00:00 MSK 2017", description = "Дата рождения", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    @Valid
+    @Schema(name = "birthdate", example = "Wed Feb 01 03:00:00 MSK 2017", description = "Дата рождения", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("birthdate")
   public LocalDate getBirthdate() {
     return birthdate;
@@ -116,11 +86,6 @@ public class UserRegisterPostRequest {
     return this;
   }
 
-  /**
-   * Get biography
-   * @return biography
-  */
-  
   @Schema(name = "biography", example = "Хобби, интересы и т.п.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("biography")
   public String getBiography() {
@@ -136,11 +101,6 @@ public class UserRegisterPostRequest {
     return this;
   }
 
-  /**
-   * Get city
-   * @return city
-  */
-  
   @Schema(name = "city", example = "Москва", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("city")
   public String getCity() {
@@ -156,11 +116,6 @@ public class UserRegisterPostRequest {
     return this;
   }
 
-  /**
-   * Get password
-   * @return password
-  */
-  
   @Schema(name = "password", example = "Секретная строка", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("password")
   public String getPassword() {
@@ -182,7 +137,6 @@ public class UserRegisterPostRequest {
     UserRegisterPostRequest userRegisterPostRequest = (UserRegisterPostRequest) o;
     return Objects.equals(this.firstName, userRegisterPostRequest.firstName) &&
         Objects.equals(this.secondName, userRegisterPostRequest.secondName) &&
-        Objects.equals(this.age, userRegisterPostRequest.age) &&
         Objects.equals(this.birthdate, userRegisterPostRequest.birthdate) &&
         Objects.equals(this.biography, userRegisterPostRequest.biography) &&
         Objects.equals(this.city, userRegisterPostRequest.city) &&
@@ -191,7 +145,7 @@ public class UserRegisterPostRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(firstName, secondName, age, birthdate, biography, city, password);
+      return Objects.hash(firstName, secondName, birthdate, biography, city, password);
   }
 
   @Override
@@ -200,7 +154,6 @@ public class UserRegisterPostRequest {
     sb.append("class UserRegisterPostRequest {\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
     sb.append("    secondName: ").append(toIndentedString(secondName)).append("\n");
-    sb.append("    age: ").append(toIndentedString(age)).append("\n");
     sb.append("    birthdate: ").append(toIndentedString(birthdate)).append("\n");
     sb.append("    biography: ").append(toIndentedString(biography)).append("\n");
     sb.append("    city: ").append(toIndentedString(city)).append("\n");
@@ -209,10 +162,6 @@ public class UserRegisterPostRequest {
     return sb.toString();
   }
 
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
   private String toIndentedString(Object o) {
     if (o == null) {
       return "null";

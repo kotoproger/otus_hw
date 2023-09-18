@@ -4,13 +4,13 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.Period;
 import javax.validation.constraints.NotNull;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class User {
     private Long id;
-    @NotNull
-    private String login;
     @NotNull
     private String password;
     private String encodedPassword;

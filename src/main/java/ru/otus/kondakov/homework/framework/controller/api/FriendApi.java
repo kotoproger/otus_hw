@@ -5,23 +5,9 @@
  */
 package ru.otus.kondakov.homework.framework.controller.api;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.enums.ParameterIn;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.Optional;
-import javax.validation.constraints.*;
-import ru.otus.kondakov.homework.framework.controller.model.LoginPost500Response;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.NativeWebRequest;
 
 @Validated
@@ -32,83 +18,83 @@ public interface FriendApi {
         return Optional.empty();
     }
 
-    /**
-     * PUT /friend/delete/{user_id}
-     *
-     * @param userId  (required)
-     * @return Пользователь успешно удалил из друзей пользователя (status code 200)
-     *         or Невалидные данные ввода (status code 400)
-     *         or Неавторизованный доступ (status code 401)
-     *         or Ошибка сервера (status code 500)
-     *         or Ошибка сервера (status code 503)
-     */
-    @Operation(
-        operationId = "friendDeleteUserIdPut",
-        responses = {
-            @ApiResponse(responseCode = "200", description = "Пользователь успешно удалил из друзей пользователя"),
-            @ApiResponse(responseCode = "400", description = "Невалидные данные ввода"),
-            @ApiResponse(responseCode = "401", description = "Неавторизованный доступ"),
-            @ApiResponse(responseCode = "500", description = "Ошибка сервера", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = LoginPost500Response.class))
-            }),
-            @ApiResponse(responseCode = "503", description = "Ошибка сервера", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = LoginPost500Response.class))
-            })
-        },
-        security = {
-            @SecurityRequirement(name = "bearerAuth")
-        }
-    )
-    @RequestMapping(
-        method = RequestMethod.PUT,
-        value = "/friend/delete/{user_id}",
-        produces = { "application/json" }
-    )
-    default ResponseEntity<Void> friendDeleteUserIdPut(
-        @Parameter(name = "user_id", description = "", required = true, in = ParameterIn.PATH) @PathVariable("user_id") String userId
-    ) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-
-    }
-
-
-    /**
-     * PUT /friend/set/{user_id}
-     *
-     * @param userId  (required)
-     * @return Пользователь успешно указал своего друга (status code 200)
-     *         or Невалидные данные ввода (status code 400)
-     *         or Неавторизованный доступ (status code 401)
-     *         or Ошибка сервера (status code 500)
-     *         or Ошибка сервера (status code 503)
-     */
-    @Operation(
-        operationId = "friendSetUserIdPut",
-        responses = {
-            @ApiResponse(responseCode = "200", description = "Пользователь успешно указал своего друга"),
-            @ApiResponse(responseCode = "400", description = "Невалидные данные ввода"),
-            @ApiResponse(responseCode = "401", description = "Неавторизованный доступ"),
-            @ApiResponse(responseCode = "500", description = "Ошибка сервера", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = LoginPost500Response.class))
-            }),
-            @ApiResponse(responseCode = "503", description = "Ошибка сервера", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = LoginPost500Response.class))
-            })
-        },
-        security = {
-            @SecurityRequirement(name = "bearerAuth")
-        }
-    )
-    @RequestMapping(
-        method = RequestMethod.PUT,
-        value = "/friend/set/{user_id}",
-        produces = { "application/json" }
-    )
-    default ResponseEntity<Void> friendSetUserIdPut(
-        @Parameter(name = "user_id", description = "", required = true, in = ParameterIn.PATH) @PathVariable("user_id") String userId
-    ) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-
-    }
+//    /**
+//     * PUT /friend/delete/{user_id}
+//     *
+//     * @param userId  (required)
+//     * @return Пользователь успешно удалил из друзей пользователя (status code 200)
+//     *         or Невалидные данные ввода (status code 400)
+//     *         or Неавторизованный доступ (status code 401)
+//     *         or Ошибка сервера (status code 500)
+//     *         or Ошибка сервера (status code 503)
+//     */
+//    @Operation(
+//        operationId = "friendDeleteUserIdPut",
+//        responses = {
+//            @ApiResponse(responseCode = "200", description = "Пользователь успешно удалил из друзей пользователя"),
+//            @ApiResponse(responseCode = "400", description = "Невалидные данные ввода"),
+//            @ApiResponse(responseCode = "401", description = "Неавторизованный доступ"),
+//            @ApiResponse(responseCode = "500", description = "Ошибка сервера", content = {
+//                @Content(mediaType = "application/json", schema = @Schema(implementation = LoginPost500Response.class))
+//            }),
+//            @ApiResponse(responseCode = "503", description = "Ошибка сервера", content = {
+//                @Content(mediaType = "application/json", schema = @Schema(implementation = LoginPost500Response.class))
+//            })
+//        },
+//        security = {
+//            @SecurityRequirement(name = "bearerAuth")
+//        }
+//    )
+//    @RequestMapping(
+//        method = RequestMethod.PUT,
+//        value = "/friend/delete/{user_id}",
+//        produces = { "application/json" }
+//    )
+//    default ResponseEntity<Void> friendDeleteUserIdPut(
+//        @Parameter(name = "user_id", description = "", required = true, in = ParameterIn.PATH) @PathVariable("user_id") String userId
+//    ) {
+//        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+//
+//    }
+//
+//
+//    /**
+//     * PUT /friend/set/{user_id}
+//     *
+//     * @param userId  (required)
+//     * @return Пользователь успешно указал своего друга (status code 200)
+//     *         or Невалидные данные ввода (status code 400)
+//     *         or Неавторизованный доступ (status code 401)
+//     *         or Ошибка сервера (status code 500)
+//     *         or Ошибка сервера (status code 503)
+//     */
+//    @Operation(
+//        operationId = "friendSetUserIdPut",
+//        responses = {
+//            @ApiResponse(responseCode = "200", description = "Пользователь успешно указал своего друга"),
+//            @ApiResponse(responseCode = "400", description = "Невалидные данные ввода"),
+//            @ApiResponse(responseCode = "401", description = "Неавторизованный доступ"),
+//            @ApiResponse(responseCode = "500", description = "Ошибка сервера", content = {
+//                @Content(mediaType = "application/json", schema = @Schema(implementation = LoginPost500Response.class))
+//            }),
+//            @ApiResponse(responseCode = "503", description = "Ошибка сервера", content = {
+//                @Content(mediaType = "application/json", schema = @Schema(implementation = LoginPost500Response.class))
+//            })
+//        },
+//        security = {
+//            @SecurityRequirement(name = "bearerAuth")
+//        }
+//    )
+//    @RequestMapping(
+//        method = RequestMethod.PUT,
+//        value = "/friend/set/{user_id}",
+//        produces = { "application/json" }
+//    )
+//    default ResponseEntity<Void> friendSetUserIdPut(
+//        @Parameter(name = "user_id", description = "", required = true, in = ParameterIn.PATH) @PathVariable("user_id") String userId
+//    ) {
+//        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+//
+//    }
 
 }

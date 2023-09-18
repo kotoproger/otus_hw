@@ -25,14 +25,17 @@ dependencies {
 	implementation 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.0'
 	implementation 'org.liquibase:liquibase-core'
 	implementation "org.mapstruct:mapstruct:1.5.3.Final"
-	implementation group: 'io.swagger.core.v3', name: 'swagger-annotations', version: '2.2.7'
-	implementation group: 'io.swagger.core.v3', name: 'swagger-models', version: '2.2.7'
+	implementation group: 'io.swagger.core.v3', name: 'swagger-annotations', version: '2.2.15'
+	implementation group: 'io.swagger.core.v3', name: 'swagger-models', version: '2.2.15'
+	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.2.0'
 	implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
 	runtimeOnly group: 'mysql', name: 'mysql-connector-java', version: '8.0.33'
 	annotationProcessor "org.mapstruct:mapstruct-processor:1.5.3.Final"
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.boot:spring-boot-testcontainers'
 	testImplementation 'org.testcontainers:junit-jupiter'
+	implementation 'javax.validation:validation-api:2.0.1.Final'
+
 
 	// lombok
 	compileOnly "org.projectlombok:lombok:1.18.24"
