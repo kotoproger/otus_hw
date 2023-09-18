@@ -1,5 +1,8 @@
 # Getting Started
 
+Java 17
+gradle
+
 ### Start
 
 * make docker
