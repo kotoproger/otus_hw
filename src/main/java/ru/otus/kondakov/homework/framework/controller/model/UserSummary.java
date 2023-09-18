@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 import javax.validation.Valid;
 import org.springframework.format.annotation.DateTimeFormat;
+import ru.otus.kondakov.homework.app.domain.User;
 
 /**
  * User
@@ -28,6 +29,8 @@ public class UserSummary {
 
   private String city;
 
+  private User.Sex sex;
+
   public UserSummary id(String id) {
     this.id = id;
     return this;
@@ -35,8 +38,9 @@ public class UserSummary {
 
   /**
    * Идентификатор пользователя
+   *
    * @return id
-  */
+   */
   
   @Schema(name = "id", description = "Идентификатор пользователя", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
@@ -215,6 +219,16 @@ public class UserSummary {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
+  }
+
+  public User.Sex getSex() {
+    return sex;
+  }
+
+  @Schema(name = "sex", example = "male", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("sex")
+  public void setSex(User.Sex sex) {
+    this.sex = sex;
   }
 }
 

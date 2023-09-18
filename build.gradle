@@ -35,7 +35,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-testcontainers'
 	testImplementation 'org.testcontainers:junit-jupiter'
 	implementation 'javax.validation:validation-api:2.0.1.Final'
-
+	implementation group: 'org.projectlombok', name: 'lombok-mapstruct-binding', version: '0.2.0'
 
 	// lombok
 	compileOnly "org.projectlombok:lombok:1.18.24"

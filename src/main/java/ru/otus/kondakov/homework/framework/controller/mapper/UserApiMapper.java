@@ -12,10 +12,13 @@ import ru.otus.kondakov.homework.framework.controller.model.UserSummary;
 public interface UserApiMapper {
     @Mapping(target = "firstName", source = "name")
     @Mapping(target = "secondName", source = "surname")
-    @Mapping(target = "birthdate", ignore = true)
-    @Mapping(target = "biography", ignore = true)
+    @Mapping(target = "birthdate", source = "birthDate")
     UserSummary mapFromSummary(Summary summary);
 
+    @Mapping(target = "name", source = "firstName")
+    @Mapping(target = "surname", source = "secondName")
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "encodedPassword", ignore = true)
     User mapCreateRequest(UserRegisterPostRequest request);
 
     default UserRegisterPost200Response mapCreateResponse(User user) {

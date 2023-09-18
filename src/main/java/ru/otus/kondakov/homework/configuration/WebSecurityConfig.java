@@ -19,12 +19,13 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests((requests) -> requests
-                .requestMatchers("/actuator").permitAll()
-                .requestMatchers(HttpMethod.GET, "/swagger-ui/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/v3/api-docs/**").permitAll()
-                .requestMatchers(HttpMethod.POST, "/user/register").permitAll()
-                .requestMatchers(HttpMethod.POST, "/login").permitAll()
-                .anyRequest().authenticated()
+                    .requestMatchers("/actuator").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/swagger-ui/**").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/v3/api-docs/**").permitAll()
+                    .requestMatchers(HttpMethod.POST, "/user/register").permitAll()
+                    .requestMatchers(HttpMethod.POST, "/login").permitAll()
+                    .anyRequest().permitAll()
+//                .anyRequest().authenticated()
             );
         http.csrf().disable();
         return http.build();

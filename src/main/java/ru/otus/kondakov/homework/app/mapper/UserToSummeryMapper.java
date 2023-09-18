@@ -7,6 +7,15 @@ import ru.otus.kondakov.homework.app.domain.User;
 @Mapper(componentModel = "spring")
 public interface UserToSummeryMapper {
     default Summary map(User user) {
-        return new Summary(user.getId(), user.getName(), user.getSurname(), user.getAge(), user.getBiography(), user.getCity());
+        return new Summary(
+            user.getId(),
+            user.getName(),
+            user.getSurname(),
+            user.getAge(),
+            user.getBiography(),
+            user.getCity(),
+            user.getBirthday(),
+            user.getSex()
+        );
     }
 }
