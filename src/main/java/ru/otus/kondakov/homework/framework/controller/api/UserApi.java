@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.NativeWebRequest;
-import ru.otus.kondakov.homework.framework.controller.model.LoginPost500Response;
 import ru.otus.kondakov.homework.framework.controller.model.UserRegisterPost200Response;
 import ru.otus.kondakov.homework.framework.controller.model.UserRegisterPostRequest;
 import ru.otus.kondakov.homework.framework.controller.model.UserSummary;
@@ -53,14 +52,6 @@ public interface UserApi {
         responses = {
             @ApiResponse(responseCode = "200", description = "Успешное получение анкеты пользователя", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = UserSummary.class))
-            }),
-            @ApiResponse(responseCode = "400", description = "Невалидные данные"),
-            @ApiResponse(responseCode = "404", description = "Анкета не найдена"),
-            @ApiResponse(responseCode = "500", description = "Ошибка сервера", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = LoginPost500Response.class))
-            }),
-            @ApiResponse(responseCode = "503", description = "Ошибка сервера", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = LoginPost500Response.class))
             })
         }
     )
@@ -92,9 +83,6 @@ public interface UserApi {
      *
      * @param userRegisterPostRequest  (optional)
      * @return Успешная регистрация (status code 200)
-     *         or Невалидные данные (status code 400)
-     *         or Ошибка сервера (status code 500)
-     *         or Ошибка сервера (status code 503)
      */
     @Operation(
         operationId = "userRegisterPost",
@@ -102,13 +90,6 @@ public interface UserApi {
         responses = {
             @ApiResponse(responseCode = "200", description = "Успешная регистрация", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = UserRegisterPost200Response.class))
-            }),
-            @ApiResponse(responseCode = "400", description = "Невалидные данные"),
-            @ApiResponse(responseCode = "500", description = "Ошибка сервера", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = LoginPost500Response.class))
-            }),
-            @ApiResponse(responseCode = "503", description = "Ошибка сервера", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = LoginPost500Response.class))
             })
         }
     )

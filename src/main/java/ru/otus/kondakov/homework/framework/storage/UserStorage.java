@@ -1,5 +1,6 @@
 package ru.otus.kondakov.homework.framework.storage;
 
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.otus.kondakov.homework.app.domain.User;
@@ -23,9 +24,9 @@ public class UserStorage implements UserStorageInterface {
     }
 
     @Override
-    public User getUser(Long id) {
-        return mapper.map(
+    public Optional<User> getUser(Long id) {
+        return Optional.of(mapper.map(
             repository.getById(id)
-        );
+        ));
     }
 }

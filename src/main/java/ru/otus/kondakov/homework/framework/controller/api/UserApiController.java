@@ -32,7 +32,7 @@ public class UserApiController implements UserApi {
 
     @Override
     public ResponseEntity<UserSummary> userGetIdGet(String id) {
-        return new ResponseEntity<>(mapper.mapFromSummary(summary.get(Long.parseLong(id))), HttpStatus.OK);
+        return new ResponseEntity<>(summary.get(Long.parseLong(id)).map(mapper::mapFromSummary).orElse(null), HttpStatus.OK);
     }
 
     @Override

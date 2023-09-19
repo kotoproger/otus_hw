@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
-import javax.validation.constraints.*;
 
 /**
  * LoginPost200Response
@@ -15,25 +14,30 @@ public class LoginPost200Response {
 
   private String token;
 
+  private String refreshToken;
+
+  public LoginPost200Response refreshToken(String refreshToken) {
+    this.refreshToken = refreshToken;
+    return this;
+  }
+
   public LoginPost200Response token(String token) {
     this.token = token;
     return this;
   }
 
-  /**
-   * Get token
-   * @return token
-  */
-  
+  @Schema(name = "refresh_token", example = "e4d2e6b0-cde2-42c5-aac3-0b8316f21e58", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("refresh_token")
+  public String refreshToken() {
+    return refreshToken;
+  }
+
   @Schema(name = "token", example = "e4d2e6b0-cde2-42c5-aac3-0b8316f21e58", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("token")
   public String getToken() {
     return token;
   }
 
-  public void setToken(String token) {
-    this.token = token;
-  }
 
   @Override
   public boolean equals(Object o) {

@@ -1,19 +1,34 @@
 # Getting Started
 
-Java 17
-gradle
+## requirements
 
-### Start
+* Java 17
+* gradle
+* openssl
+
+### make commands
 
 * make docker
 * make app
+* make stop
+* make clean
+* make keys
 
-### Stop
+### Init env
 
-make stop
+* make docker
+* make keys
+
+### Start app
+
+* make app
+
+### Stop app
+
+* make stop
 
 ### Clean database
 
-make clean
+* make clean
 
 [Swagger UI](http://localhost:8080/swagger-ui/index.html#/)

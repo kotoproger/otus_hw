@@ -1,5 +1,6 @@
 package ru.otus.kondakov.homework.app;
 
+import java.util.Optional;
 import org.springframework.stereotype.Service;
 import ru.otus.kondakov.homework.app.domain.Summary;
 import ru.otus.kondakov.homework.app.mapper.UserToSummeryMapper;
@@ -15,7 +16,7 @@ public class GetSummary {
         this.mapper = mapper;
     }
 
-    public Summary get(Long id) {
-        return mapper.map(this.storage.getUser(id));
+    public Optional<Summary> get(Long id) {
+        return this.storage.getUser(id).map(mapper::map);
     }
 }
