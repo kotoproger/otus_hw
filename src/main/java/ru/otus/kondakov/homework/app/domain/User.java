@@ -30,72 +30,81 @@ public class User {
         return id;
     }
 
-    public void setId(Long id) {
+    public User setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public User setPassword(String password) {
         this.password = password;
+        return this;
     }
 
     public String getEncodedPassword() {
         return encodedPassword;
     }
 
-    public void setEncodedPassword(String encodedPassword) {
+    public User setEncodedPassword(String encodedPassword) {
         this.encodedPassword = encodedPassword;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public User setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getSurname() {
         return surname;
     }
 
-    public void setSurname(String surname) {
+    public User setSurname(String surname) {
         this.surname = surname;
+        return this;
     }
 
     public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(LocalDate birthday) {
+    public User setBirthday(LocalDate birthday) {
         this.birthday = birthday;
+        return this;
     }
 
     public String getBiography() {
         return biography;
     }
 
-    public void setBiography(String biography) {
+    public User setBiography(String biography) {
         this.biography = biography;
+        return this;
     }
 
     public String getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public User setCity(String city) {
         this.city = city;
+        return this;
     }
 
     public Sex getSex() {
         return sex;
     }
 
-    public void setSex(Sex sex) {
+    public User setSex(Sex sex) {
         this.sex = sex;
+        return this;
     }
 
     public enum Sex {

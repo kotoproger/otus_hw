@@ -47,63 +47,71 @@ public class Users {
         return id;
     }
 
-    public void setId(Long id) {
+    public Users setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public Users setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getSurname() {
         return surname;
     }
 
-    public void setSurname(String surname) {
+    public Users setSurname(String surname) {
         this.surname = surname;
+        return this;
     }
 
     public String getBiography() {
         return biography;
     }
 
-    public void setBiography(String biography) {
+    public Users setBiography(String biography) {
         this.biography = biography;
+        return this;
     }
 
     public String getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public Users setCity(String city) {
         this.city = city;
+        return this;
     }
 
     public User.Sex getSex() {
         return sex;
     }
 
-    public void setSex(User.Sex sex) {
+    public Users setSex(User.Sex sex) {
         this.sex = sex;
+        return this;
     }
 
     public String getPassword_hash() {
         return password_hash;
     }
 
-    public void setPassword_hash(String password_hash) {
+    public Users setPassword_hash(String password_hash) {
         this.password_hash = password_hash;
+        return this;
     }
 
     public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
+    public Users setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+        return this;
     }
 }
