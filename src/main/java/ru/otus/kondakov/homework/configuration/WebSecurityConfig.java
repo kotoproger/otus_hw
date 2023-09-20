@@ -44,8 +44,8 @@ public class WebSecurityConfig {
                     .requestMatchers(HttpMethod.GET, "/v3/api-docs/**").permitAll()
                     .requestMatchers(HttpMethod.POST, "/user/register").permitAll()
                     .requestMatchers(HttpMethod.POST, "/login").permitAll()
-//                    .anyRequest().permitAll()
-                    .anyRequest().authenticated()
+                    .anyRequest().permitAll()
+//                    .anyRequest().authenticated()
             )
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);

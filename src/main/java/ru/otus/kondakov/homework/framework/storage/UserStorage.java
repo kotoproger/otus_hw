@@ -1,5 +1,6 @@
 package ru.otus.kondakov.homework.framework.storage;
 
+import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,5 +29,11 @@ public class UserStorage implements UserStorageInterface {
         return Optional.of(mapper.map(
             repository.getById(id)
         ));
+    }
+
+    @Override
+    public List<User> find(String name, String surname) {
+        var list = repository.findByNameStartingWithAndSurnameStartingWithOrderByIdAsc(name, surname);
+        return list.stream().map(mapper::map).toList();
     }
 }

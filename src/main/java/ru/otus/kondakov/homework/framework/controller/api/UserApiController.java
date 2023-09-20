@@ -1,5 +1,6 @@
 package ru.otus.kondakov.homework.framework.controller.api;
 
+import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.NativeWebRequest;
 import ru.otus.kondakov.homework.app.CreateUser;
 import ru.otus.kondakov.homework.app.GetSummary;
+import ru.otus.kondakov.homework.app.Search;
 import ru.otus.kondakov.homework.framework.controller.mapper.UserApiMapper;
 import ru.otus.kondakov.homework.framework.controller.model.UserRegisterPost200Response;
 import ru.otus.kondakov.homework.framework.controller.model.UserRegisterPostRequest;
@@ -24,6 +26,7 @@ public class UserApiController implements UserApi {
     private final GetSummary summary;
     private final UserApiMapper mapper;
     private final CreateUser createUser;
+    private final Search search;
 
     @Override
     public Optional<NativeWebRequest> getRequest() {
@@ -41,6 +44,14 @@ public class UserApiController implements UserApi {
             mapper.mapCreateResponse(
                 createUser.register(mapper.mapCreateRequest(userRegisterPostRequest))
             ),
+            HttpStatus.OK
+        );
+    }
+
+    @Override
+    public ResponseEntity<List<UserSummary>> userSearchGet(String firstName, String lastName) {
+        return new ResponseEntity<>(
+            search.searchByPrefix(firstName, lastName).stream().map(mapper::mapFromSummary).toList(),
             HttpStatus.OK
         );
     }
