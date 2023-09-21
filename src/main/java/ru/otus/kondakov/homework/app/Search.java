@@ -17,7 +17,7 @@ public class Search {
         String name,
         String surname
     ) {
-        return userStorage.find(name, surname).stream()
+        return userStorage.find(name + "%", surname + "%").stream()
             .map(mapper::map)
             .toList();
     }

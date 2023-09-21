@@ -11,7 +11,7 @@ stop:
 	docker-compose stop
 
 clean:
-	docker-compose down
+	docker-compose db down
 
 keys:
 	openssl genrsa  -out src/main/resources/rsa/keypair.pem 2048 && \

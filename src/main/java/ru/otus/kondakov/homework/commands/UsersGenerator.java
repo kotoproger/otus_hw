@@ -10,7 +10,6 @@ import lombok.SneakyThrows;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
-import ru.otus.kondakov.homework.app.CreateUser;
 import ru.otus.kondakov.homework.app.domain.User;
 import ru.otus.kondakov.homework.framework.storage.entity.Users;
 import ru.otus.kondakov.homework.framework.storage.repository.UsersRepository;
@@ -19,7 +18,6 @@ import ru.otus.kondakov.homework.framework.utils.PasswordEncoder;
 @Component
 @RequiredArgsConstructor
 public class UsersGenerator implements ApplicationRunner {
-    private final CreateUser createUser;
     private final UsersRepository usersRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -31,10 +29,10 @@ public class UsersGenerator implements ApplicationRunner {
             var faker = new Faker();
             List<Users> users = new ArrayList<>();
             int inserted = 0;
-            List<Generator> generators = new ArrayList<>();
-            List<Thread> threads = new ArrayList<>();
+            List<Generator> generators = new ArrayList<>(15);
+            List<Thread> threads = new ArrayList<>(15);
 
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < 15; i++) {
                 var generator = new Generator(neededCount, passwordEncoder);
                 generators.add(generator);
                 var thread = new Thread(generator);
@@ -56,11 +54,12 @@ public class UsersGenerator implements ApplicationRunner {
     public static class Generator implements Runnable {
         private final int count;
         private final PasswordEncoder passwordEncoder;
-        private List<Users> list = new ArrayList<>();
+        private List<Users> list;
 
         public Generator(int count, PasswordEncoder passwordEncoder) {
             this.count = count;
             this.passwordEncoder = passwordEncoder;
+            list = new ArrayList<>(count);
         }
 
         @SneakyThrows

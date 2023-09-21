@@ -13,7 +13,7 @@ import lombok.Data;
 import ru.otus.kondakov.homework.app.domain.User;
 
 @Entity
-@Table(schema = "hw", name = "users")
+@Table(schema = "public", name = "users")
 @Data
 public class Users {
     @Id

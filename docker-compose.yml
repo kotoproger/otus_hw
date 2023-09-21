@@ -1,13 +1,38 @@
 version: "3.8"
 
 services:
-  mysql_db:
-    image: mysql:5.7
+#  mysql_db:
+  #    image: mysql:5.7
+  #    restart: always
+  #    ports:
+  #      - "3306:3306"
+  #    environment:
+  #      MYSQL_ROOT_PASSWORD: secret
+  #      MYSQL_DATABASE: hw
+  #      MYSQL_USER: secret
+  #      MYSQL_PASSWORD: secret
+  db:
+    image: postgres
     restart: always
     ports:
-      - "3306:3306"
+      - "5432:5432"
     environment:
-      MYSQL_ROOT_PASSWORD: secret
-      MYSQL_DATABASE: hw
-      MYSQL_USER: secret
-      MYSQL_PASSWORD: secret
+      POSTGRES_DB: hw
+      POSTGRES_USER: secret
+      POSTGRES_PASSWORD: secret
+
+  prom:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./etc/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+
+  graf:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
