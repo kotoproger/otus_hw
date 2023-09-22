@@ -1,0 +1,1 @@
+CREATE INDEX users_name_surname_idx ON public.users (lower("name") varchar_pattern_ops, lower(surname) varchar_pattern_ops);

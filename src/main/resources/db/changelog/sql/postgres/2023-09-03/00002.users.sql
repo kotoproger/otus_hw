@@ -1,11 +1,3 @@
-do
-$$
-begin
-create type users_sex as enum('male', 'female');
-exception
-    when duplicate_object then null;
-end $$;
-
 CREATE TABLE users
 (
     id            BIGINT generated always as identity NOT NULL,

@@ -1,0 +1,1 @@
+CREATE INDEX users_surname_IDX USING BTREE ON hw.users (surname);

@@ -9,6 +9,7 @@ import ru.otus.kondakov.homework.framework.storage.entity.Users;
 public interface UsersMapper {
     @Mapping(source = "birthDate", target = "birthday")
     @Mapping(source = "password_hash", target = "encodedPassword")
+    @Mapping(target = "password", ignore = true)
     User map(Users user);
 
     @Mapping(target = "birthDate", source = "birthday")
