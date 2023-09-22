@@ -2,12 +2,12 @@
 
 * [урл апи для теста](http://localhost:8080/swagger-ui/index.html#/user/userSearchGet)
 * генерация тестовых данных командой __gradle bootRun --args="--generate_users=1000"__
-* [сценарий(jmeter) для создания нагрузки](./search_dos.jmx)
+* [сценарий(jmeter) для создания нагрузки](search_dos.jmx)
 
 ## Методология тестировния
 
 * при тестировании приложение, бд и создаваемая нагрузка находятся на 1 машине
-* нагрузка создается при помощи приложения jmeter. [сценарий(jmeter) для создания нагрузки](./search_dos.jmx)
+* нагрузка создается при помощи приложения jmeter. [сценарий(jmeter) для создания нагрузки](search_dos.jmx)
     * Приложени отправляет запросы на поиск по имени и фамилии, подставляя в запрос рандомную 1 букву (худший вариант
       поиска)
 * тестирование проводится в 3 этапа
@@ -18,26 +18,26 @@
 
 ## Состояние бд на начало тестов
 
-![статистика таблицы до начала работ](./table_stats_before.png "статистика таблицы до начала работ")
-![индексы до начала работ](./table_index_before.png "индексы таблицы до начала работ")
-![пример тестовых данных](./table_data_before.png "пример тестовых данных")
+![статистика таблицы до начала работ](table_stats_before.png "статистика таблицы до начала работ")
+![индексы до начала работ](table_index_before.png "индексы таблицы до начала работ")
+![пример тестовых данных](table_data_before.png "пример тестовых данных")
 
 ## Замер производительности при начальном состоянии
 
 ### в 1 поток
 
-![](./graph_1_before.png)
-![](./aggregate_1_before.png)
+![](graph_1_before.png)
+![](aggregate_1_before.png)
 
 ### в 10 потоков
 
-![](./graph_10_before.png)
-![](./aggregate_10_before.png)
+![](graph_10_before.png)
+![](aggregate_10_before.png)
 
 ### в 50 потоков
 
-![](./graph_50_before.png)
-![](./aggregate_50_before.png)
+![](graph_50_before.png)
+![](aggregate_50_before.png)
 
 ## Оптимизация работы БД
 
@@ -47,26 +47,26 @@ CREATE INDEX users_surname_IDX USING BTREE ON hw.users (surname);`
 В зависимости от условий по которым осуществляется поиск, бд может выбирать между 2-мя индексами. В каких то случаях
 будет оптимальнее использовать по имени, а в какихто по фамилии.
 
-![](./explain_after.png)
-![](./explain_after_2.png)
-![](./explain_after_3.png)
+![](explain_after.png)
+![](explain_after_2.png)
+![](explain_after_3.png)
 
 ## Замер производительности после создания индексов
 
 ### в 1 поток
 
-![](./graph_1_after.png)
-![](./aggregate_1_after.png)
+![](graph_1_after.png)
+![](aggregate_1_after.png)
 
 ### в 10 потоков
 
-![](./graph_10_after.png)
-![](./aggregate_10_after.png)
+![](graph_10_after.png)
+![](aggregate_10_after.png)
 
 ### в 50 потоков
 
-![](./graph_50_after.png)
-![](./aggregate_50_after.png)
+![](graph_50_after.png)
+![](aggregate_50_after.png)
 
 ## Сравнение результатов
 
@@ -75,18 +75,18 @@ CREATE INDEX users_surname_IDX USING BTREE ON hw.users (surname);`
 
 ### 1 поток
 
-![](./aggregate_1_before.png)
-![](./aggregate_1_after.png)
+![](aggregate_1_before.png)
+![](aggregate_1_after.png)
 
 ### 10 потоков
 
-![](./aggregate_10_before.png)
-![](./aggregate_10_after.png)
+![](aggregate_10_before.png)
+![](aggregate_10_after.png)
 
 ### 50 потоков
 
-![](./aggregate_10_before.png)
-![](./aggregate_10_after.png)
+![](aggregate_10_before.png)
+![](aggregate_10_after.png)
 
 ## Изменим характер нагрузки
 
@@ -95,18 +95,18 @@ CREATE INDEX users_surname_IDX USING BTREE ON hw.users (surname);`
 
 ### в 1 поток
 
-![](./graph_1_after_2.png)
-![](./aggregate_1_after_2.png)
+![](graph_1_after_2.png)
+![](aggregate_1_after_2.png)
 
 ### в 10 потоков
 
-![](./graph_10_after_2.png)
-![](./aggregate_10_after_2.png)
+![](graph_10_after_2.png)
+![](aggregate_10_after_2.png)
 
 ### в 50 потоков
 
-![](./graph_50_after_2.png)
-![](./aggregate_50_after_2.png)
+![](graph_50_after_2.png)
+![](aggregate_50_after_2.png)
 
 ## Сравнение результатов
 
@@ -115,18 +115,18 @@ CREATE INDEX users_surname_IDX USING BTREE ON hw.users (surname);`
 
 ### 1 поток
 
-![](./aggregate_1_before.png)
-![](./aggregate_1_after.png)
-![](./aggregate_1_after_2.png)
+![](aggregate_1_before.png)
+![](aggregate_1_after.png)
+![](aggregate_1_after_2.png)
 
 ### 10 потоков
 
-![](./aggregate_10_before.png)
-![](./aggregate_10_after.png)
-![](./aggregate_10_after_2.png)
+![](aggregate_10_before.png)
+![](aggregate_10_after.png)
+![](aggregate_10_after_2.png)
 
 ### 50 потоков
 
-![](./aggregate_10_before.png)
-![](./aggregate_10_after.png)
-![](./aggregate_10_after_2.png)
+![](aggregate_10_before.png)
+![](aggregate_10_after.png)
+![](aggregate_10_after_2.png)
