@@ -42,7 +42,9 @@
 
 ## Оптимизация работы БД
 
-`CREATE INDEX users_name_surname_idx ON public.users (lower("name") varchar_pattern_ops,lower(surname) varchar_pattern_ops);`
+```postgresql
+CREATE INDEX users_name_surname_idx ON public.users (lower("name") varchar_pattern_ops,lower(surname) varchar_pattern_ops);
+```
 
 опция varchar_pattern_ops нужна для оптимизации индекса под поиск по префиксу, с этой оптимизацией индекс будет
 использован для поиска по 2-м полям, без нее индекс не используется.

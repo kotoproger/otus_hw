@@ -41,8 +41,10 @@
 
 ## Оптимизация работы БД
 
-`CREATE INDEX users_name_IDX USING BTREE ON hw.users (name);
-CREATE INDEX users_surname_IDX USING BTREE ON hw.users (surname);`
+```mysql
+CREATE INDEX users_name_IDX USING BTREE ON hw.users (name);
+CREATE INDEX users_surname_IDX USING BTREE ON hw.users (surname);
+```
 
 В зависимости от условий по которым осуществляется поиск, бд может выбирать между 2-мя индексами. В каких то случаях
 будет оптимальнее использовать по имени, а в какихто по фамилии.

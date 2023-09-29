@@ -22,19 +22,25 @@
 * make keys
 
 ### Init env
-
-* make docker
-* make keys
+```bash
+make docker && \
+make keys
+```
 
 ### Start app
 
-* make app
+```bash
+make app
+```
 
 ### Stop app
 
-* make stop
+```bash
+make stop
+```
 
 ### Clean database
 
-* make clean
-
+```bash
+make clean
+```
