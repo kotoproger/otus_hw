@@ -3,7 +3,7 @@ version: "3.8"
 services:
   mysql_db:
     image: mysql:5.7
-    restart: always
+    restart: unless-stopped
     ports:
       - "3306:3306"
     environment:
@@ -11,9 +11,27 @@ services:
       MYSQL_DATABASE: hw
       MYSQL_USER: secret
       MYSQL_PASSWORD: secret
-  db:
+
+  mysql_metrics:
+    image: prom/mysqld-exporter:latest
+    restart: unless-stopped
+    ports:
+      - "9104:9104"
+    command:
+      - "--config.my-cnf=/cfg/.my.cnf"
+    #      - "collect.info_schema.innodb_metrics"
+    #      - "collect.info_schema.tablestats"
+    #      - "collect.info_schema.tables"
+    #      - "collect.info_schema.userstats"
+    #      - "-collect.engine_innodb_status"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./etc/mysql-exporter/.my.cnf:/cfg/.my.cnf
+
+  postgres:
     image: postgres
-    restart: always
+    restart: unless-stopped
     ports:
       - "5432:5432"
     environment:
@@ -21,8 +39,19 @@ services:
       POSTGRES_USER: secret
       POSTGRES_PASSWORD: secret
 
+  postgres_metrics:
+    image: quay.io/prometheuscommunity/postgres-exporter
+    restart: unless-stopped
+    ports:
+      - "9187:9187"
+    environment:
+      DATA_SOURCE_NAME: "postgresql://secret:secret@postgres:5432/postgres?sslmode=disable"
+    volumes:
+      - ./etc/postgres-exporter/postgres_exporter.yml:/postgres_exporter.yml
+
   prom:
     image: prom/prometheus
+    restart: unless-stopped
     ports:
       - "9090:9090"
     extra_hosts:
@@ -32,6 +61,7 @@ services:
 
   graf:
     image: grafana/grafana
+    restart: unless-stopped
     ports:
       - "3000:3000"
     extra_hosts:
